@@ -13,8 +13,8 @@ This script is designed to automate bridging of agEUR across different chains us
 
 Configurate scripts in a file `main.py`.
 
-- from_chain_name: The name of the chain you are bridging from. Can be "Gnosis", "Celo", or "Arbitrum".
-- to_chain_name: The name of the chain you are bridging to. Can be "Gnosis", "Celo", or "Arbitrum".
+- from_chain_name: The name of the chain you are bridging from. Can be "Gnosis", "Celo", "Arbitrum", "Bsc" or "Polygon".
+- to_chain_name: The name of the chain you are bridging to. Can be "Gnosis", "Celo", "Arbitrum", "Bsc" or "Polygon".
 - delay_range: A tuple that defines the minimum and maximum delay (in seconds) between transactions for different wallets.
 - random_wallets: If set to True, the script will randomly shuffle the wallets before starting.
 - max_attempts: Number of attempts when a transaction fails 
