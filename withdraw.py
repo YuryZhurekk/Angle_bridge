@@ -10,7 +10,7 @@ from loguru import logger
 
 '''
     Withdraw LZ-agEUR 
-    chains : Gnosis | Celo
+    chains : Gnosis | Celo | Arbitrum | Polygon | Bsc
 '''
 
 from_chain_name = "Celo"    # Enter here the network from which you're bridging
@@ -42,7 +42,7 @@ class Gnosis(Chain):
         super().__init__(
             'https://rpc.ankr.com/gnosis',  # rpc
             '0xFA5Ed56A203466CbBC2430a43c66b9D8723528E7',  # bridge contract
-            '0x4b1E2c2762667331Bc91648052F646d1b0d35984',  # agEUR contract
+            '0xFA5Ed56A203466CbBC2430a43c66b9D8723528E7',  # agEUR contract
             145,  # Chain ID LZ
             'https://gnosisscan.io'  # explorer
         )
@@ -59,11 +59,47 @@ class Celo(Chain):
         )
 
 
+class Arbitrum(Chain):
+    def __init__(self):
+        super().__init__(
+            'https://rpc.ankr.com/arbitrum',  # rpc
+            '0x16cd38b1B54E7abf307Cb2697E2D9321e843d5AA',  # bridge contract
+            '0x16cd38b1B54E7abf307Cb2697E2D9321e843d5AA',  # agEUR contract
+            110,  # Chain ID LZ
+            'https://arbiscan.io'  # explorer
+        )
+
+
+class Bsc(Chain):
+    def __init__(self):
+        super().__init__(
+            'https://rpc.ankr.com/bsc',  # rpc
+            '0xe9f183FC656656f1F17af1F2b0dF79b8fF9ad8eD',  # bridge contract
+            '0xe9f183FC656656f1F17af1F2b0dF79b8fF9ad8eD',  # agEUR contract
+            102,  # Chain ID LZ
+            'https://bscscan.com'  # explorer
+        )
+
+
+class Polygon(Chain):
+    def __init__(self):
+        super().__init__(
+            'https://rpc.ankr.com/arbitrum',  # rpc
+            '0x0c1EBBb61374dA1a8C57cB6681bF27178360d36F',  # bridge contract
+            '0x0c1EBBb61374dA1a8C57cB6681bF27178360d36F',  # agEUR contract
+            109,  # Chain ID LZ
+            'https://polygonscan.com'  # explorer
+        )
+
+
 class ChainSelector:
     def __init__(self):
         self.chains = {
             "Gnosis": Gnosis(),
             "Celo": Celo(),
+            "Arbitrum": Arbitrum(),
+            "Bsc": Bsc(),
+            "Polygon": Polygon()
         }
 
     def get_chain(self, chain_name):
