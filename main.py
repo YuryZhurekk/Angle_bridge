@@ -211,6 +211,9 @@ async def bridge_ag_eur(chain_from, chain_to, wallet, max_attempts):
                     'nonce': nonce,
                 })
 
+                gasLimit = await chain_from.w3.eth.estimate_gas(bridge_txn)
+                bridge_txn['gas'] = int(gasLimit * random.uniform(1.2, 1.3))
+
                 signed_bridge_txn = chain_from.w3.eth.account.sign_transaction(
                     bridge_txn, wallet)
                 raw_bridge_txn_hash = await chain_from.w3.eth.send_raw_transaction(signed_bridge_txn.rawTransaction)
