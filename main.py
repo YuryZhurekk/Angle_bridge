@@ -147,6 +147,9 @@ async def approve_ag_eur(chain_from, wallet, max_attempts):
                     'nonce': nonce,
                 })
 
+                gasLimit = await chain_from.w3.eth.estimate_gas(bridge_txn)
+                approve_txn['gas'] = int(gasLimit * random.uniform(1.2, 1.3))
+
                 signed_approve_txn = chain_from.w3.eth.account.sign_transaction(
                     approve_txn, wallet)
                 raw_approve_txn_hash = await chain_from.w3.eth.send_raw_transaction(signed_approve_txn.rawTransaction)
